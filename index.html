@@ -3,99 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday, Varsha! ✨🎂 | For my bestie Jadee 💖</title>
+    <title>Happy Birthday Varsha (Jadee)! 💖✨</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Canvas Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        pastelPink: '#FFF0F5',
-                        roseGold: '#B76E79',
-                        softRose: '#FFD1DC',
-                        lavender: '#E6E6FA',
-                        warmCream: '#FFFDF9',
-                        deepRose: '#D87093',
-                        blushPink: '#FFB6C1',
-                    },
-                    fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                        handwriting: ['Caveat', 'cursive'],
-                    },
-                    boxShadow: {
-                        glass: '0 8px 32px 0 rgba(183, 110, 121, 0.15)',
-                        glow: '0 0 25px rgba(255, 182, 193, 0.6)',
-                        card: '0 10px 25px -5px rgba(216, 112, 147, 0.1), 0 8px 10px -6px rgba(216, 112, 147, 0.1)',
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --primary-lavender: #e9d5ff;
+            --rose-gold: #f43f5e;
+        }
+
         body {
-            background: linear-gradient(135deg, #FFF0F5 0%, #F5E6EC 35%, #E6E6FA 70%, #FFFDF9 100%);
-            background-attachment: fixed;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 40%, #311042 80%, #0f172a 100%);
+            color: #f8fafc;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
+        .font-handwriting {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .font-serif-title {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Glassmorphism Styling */
         .glass-card {
-            background: rgba(255, 255, 255, 0.65);
+            background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .glass-card-darker {
-            background: rgba(255, 240, 245, 0.8);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 182, 193, 0.4);
+        .glass-card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* 3D Flip Card Styles */
-        .perspective-1000 {
-            perspective: 1000px;
+        .glass-card-hover:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: rgba(244, 114, 182, 0.4);
+            box-shadow: 0 25px 50px -12px rgba(236, 72, 153, 0.25);
         }
-        .transform-style-3d {
-            transform-style: preserve-3d;
+
+        /* Glow effects */
+        .text-glow {
+            text-shadow: 0 0 15px rgba(236, 72, 153, 0.6), 0 0 30px rgba(168, 85, 247, 0.4);
         }
-        .backface-hidden {
-            backface-visibility: hidden;
+
+        .gold-glow {
+            text-shadow: 0 0 15px rgba(251, 191, 36, 0.7), 0 0 30px rgba(245, 158, 11, 0.5);
         }
-        .rotate-y-180 {
-            transform: rotateY(180deg);
+
+        /* Ambient floating elements */
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+
+        .pulse-glow {
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 15px rgba(244, 63, 94, 0.4); }
+            100% { box-shadow: 0 0 35px rgba(244, 63, 94, 0.9); }
         }
 
         /* Candle Flame animation */
-        @keyframes flameFlicker {
-            0%, 100% { transform: scale(1) rotate(-1deg); opacity: 0.95; }
-            50% { transform: scale(1.15) rotate(2deg); opacity: 1; filter: drop-shadow(0 0 8px #ffb700); }
-        }
-        .flame-active {
-            animation: flameFlicker 0.6s infinite ease-in-out;
+        .flame {
+            width: 16px;
+            height: 26px;
+            background: linear-gradient(to top, #ff4500, #ffae00, #ffffff);
+            border-radius: 50% 50% 20% 20%;
+            position: absolute;
+            top: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: flicker 0.1s infinite alternate;
+            box-shadow: 0 0 20px #ffae00, 0 0 30px #ff4500;
         }
 
-        /* Floating background particles canvas */
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1) rotate(-1deg); }
+            100% { transform: translateX(-50%) scale(1.1) rotate(1deg); }
+        }
+
+        .flame.extinguished {
+            display: none;
+        }
+
+        /* Flip Card logic */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        
+        .transform-style-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .flipped {
+            transform: rotateY(180deg);
+        }
+
+        .backface-hidden {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .rotate-y-180 {
+            transform: rotateY(180deg);
         }
 
         /* Custom Scrollbar */
@@ -103,774 +135,603 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #FFF0F5;
+            background: #0f172a;
         }
         ::-webkit-scrollbar-thumb {
-            background: #FFB6C1;
+            background: #3b0764;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #D87093;
+            background: #581c87;
         }
     </style>
 </head>
-<body class="text-gray-800 font-sans relative selection:bg-softRose selection:text-deepRose">
+<body class="relative text-slate-100 selection:bg-pink-500 selection:text-white">
 
-    <!-- Ambient Floating Particles Canvas -->
-    <canvas id="bg-canvas"></canvas>
+    <!-- Background Sparkles Container -->
+    <div id="particle-container" class="fixed inset-0 pointer-events-none z-0"></div>
 
-    <!-- Fixed Audio Control Bar -->
-    <header class="fixed top-4 right-4 z-50">
-        <button id="music-toggle" class="glass-card px-4 py-2.5 rounded-full flex items-center gap-3 shadow-glass hover:shadow-glow transition-all duration-300 group border border-white/80 active:scale-95">
-            <div id="music-icon-container" class="w-8 h-8 rounded-full bg-deepRose text-white flex items-center justify-center text-sm shadow-sm">
-                <i id="music-icon" class="fa-solid fa-music"></i>
-            </div>
-            <span id="music-text" class="text-xs font-semibold text-gray-700 group-hover:text-deepRose tracking-wider uppercase">Play Birthday Melody</span>
+    <!-- Audio Control Panel (Web Audio API Synthesizer) -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="musicToggle" onclick="toggleMusic()" class="glass-card px-4 py-2.5 rounded-full flex items-center gap-2 hover:bg-white/20 transition-all text-xs sm:text-sm font-medium border border-pink-500/30 shadow-lg">
+            <i id="musicIcon" class="fa-solid fa-music text-pink-400"></i>
+            <span id="musicText">Play Music 🎵</span>
         </button>
-    </header>
+    </div>
 
     <!-- Main Container -->
-    <main class="relative z-10 max-w-5xl mx-auto px-4 py-8 sm:py-12 space-y-16">
+    <div class="relative z-10 max-w-5xl mx-auto px-4 py-8 space-y-16">
 
-        <!-- Hero & Birthday Header -->
-        <section class="text-center pt-8 space-y-6">
-            <div class="inline-block px-4 py-1.5 rounded-full bg-white/70 border border-softRose shadow-sm text-deepRose font-medium text-sm tracking-wide mb-2 animate-bounce">
-                🎉 Today is All About You! 🎉
+        <!-- SECTION 1: HERO HEADER -->
+        <header class="text-center space-y-6 pt-8">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/30 text-pink-300 text-xs sm:text-sm font-semibold tracking-widest uppercase floating">
+                ✨ Special Day for an Extraordinary Soul ✨
             </div>
             
-            <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif font-bold text-gray-800 tracking-tight leading-tight">
-                Happy Birthday, <span class="text-transparent bg-clip-text bg-gradient-to-r from-deepRose via-roseGold to-purple-500">Varsha!</span>
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight font-serif-title">
+                Happy Birthday <br/>
+                <span class="bg-gradient-to-r from-pink-400 via-purple-300 to-indigo-300 bg-clip-text text-transparent text-glow">
+                    Varsha (Jadee)! 🌸
+                </span>
             </h1>
+
+            <p class="max-w-2xl mx-auto text-slate-300 text-base sm:text-lg leading-relaxed px-2">
+                Today is all about celebrating <span class="text-pink-300 font-semibold">YOU</span>—the laughter you bring, the warmth you give, and the magic of having you as a best friend!
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 pt-2">
+                <button onclick="triggerConfetti()" class="px-6 py-3 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold text-sm shadow-lg shadow-pink-500/25 active:scale-95 transition-all">
+                    🎉 Celebrate With Confetti!
+                </button>
+                <a href="#special-surprise" class="px-6 py-3 rounded-full glass-card hover:bg-white/10 text-pink-300 border border-pink-400/40 text-sm font-semibold transition-all">
+                    🎁 Jump to Special Surprise
+                </a>
+            </div>
+        </header>
+
+        <!-- SECTION 2: INTERACTIVE CAKE & CANDLE BLESSINGS -->
+        <section class="glass-card rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden">
+            <div class="absolute -top-12 -right-12 w-40 h-40 bg-pink-500/20 rounded-full blur-3xl pointer-events-none"></div>
             
-            <p class="text-xl sm:text-2xl font-handwriting text-deepRose font-semibold">
-                ✨ To my absolute bestie in the world, <span class="underline decoration-wavy decoration-softRose">Jadee</span> 💖 ✨
+            <h2 class="text-2xl sm:text-3xl font-bold font-serif-title text-pink-200 mb-2">
+                Make a Wish & Blow Out the Candles! 🕯️
+            </h2>
+            <p class="text-slate-300 text-sm mb-8" id="cakeInstruction">
+                Tap each candle flame to blow it out!
             </p>
 
-            <p class="max-w-xl mx-auto text-gray-600 text-base sm:text-lg font-light leading-relaxed">
-                Welcome to your interactive birthday universe! Made with endless love, laughter, inside jokes, and special surprises just for you.
-            </p>
-        </section>
-
-        <!-- Virtual Birthday Cake Section -->
-        <section class="glass-card rounded-3xl p-6 sm:p-10 shadow-glass border border-white/80 text-center relative overflow-hidden">
-            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-softRose/30 rounded-full blur-2xl pointer-events-none"></div>
-            <div class="absolute -left-10 -top-10 w-40 h-40 bg-lavender/40 rounded-full blur-2xl pointer-events-none"></div>
-
-            <div class="max-w-md mx-auto space-y-6">
-                <div class="space-y-2">
-                    <h2 class="text-2xl sm:text-3xl font-serif font-bold text-gray-800">Make a Wish & Blow the Candles! 🎂</h2>
-                    <p class="text-sm text-gray-600">Click/tap each candle flame or hit the button below to blow them out!</p>
+            <!-- Cake Graphic -->
+            <div class="relative w-64 sm:w-80 mx-auto mt-12 mb-6">
+                <!-- Candles Row -->
+                <div class="flex justify-center gap-6 sm:gap-8 absolute -top-12 left-0 right-0 z-20">
+                    <!-- Candle 1 -->
+                    <div class="relative cursor-pointer group" onclick="extinguishCandle(1)">
+                        <div id="flame-1" class="flame"></div>
+                        <div class="w-3.5 h-12 bg-gradient-to-b from-pink-300 to-pink-500 rounded-t-sm mx-auto shadow-md"></div>
+                    </div>
+                    <!-- Candle 2 -->
+                    <div class="relative cursor-pointer group" onclick="extinguishCandle(2)">
+                        <div id="flame-2" class="flame"></div>
+                        <div class="w-3.5 h-14 bg-gradient-to-b from-purple-300 to-purple-500 rounded-t-sm mx-auto shadow-md"></div>
+                    </div>
+                    <!-- Candle 3 -->
+                    <div class="relative cursor-pointer group" onclick="extinguishCandle(3)">
+                        <div id="flame-3" class="flame"></div>
+                        <div class="w-3.5 h-12 bg-gradient-to-b from-rose-300 to-rose-500 rounded-t-sm mx-auto shadow-md"></div>
+                    </div>
                 </div>
 
-                <!-- Interactive Birthday Cake Graphic -->
-                <div class="relative w-64 h-64 sm:w-72 sm:h-72 mx-auto flex flex-col items-center justify-end pb-4">
-                    
-                    <!-- Candles Container -->
-                    <div id="candles-container" class="flex justify-center items-end gap-5 mb-1 z-20">
-                        <!-- Candle 1 -->
-                        <div class="candle group cursor-pointer flex flex-col items-center" onclick="extinguishCandle(0)">
-                            <div id="flame-0" class="flame flame-active w-4 h-6 bg-gradient-to-t from-yellow-500 via-orange-400 to-red-400 rounded-full shadow-glow mb-0.5 transform origin-bottom transition-all duration-300"></div>
-                            <div class="w-1.5 h-3 bg-gray-300 rounded-t"></div>
-                            <div class="w-4 h-12 bg-gradient-to-r from-pink-300 via-pink-400 to-pink-300 rounded-sm shadow-sm border-t border-white/50"></div>
-                        </div>
-                        <!-- Candle 2 -->
-                        <div class="candle group cursor-pointer flex flex-col items-center" onclick="extinguishCandle(1)">
-                            <div id="flame-1" class="flame flame-active w-4 h-6 bg-gradient-to-t from-yellow-500 via-orange-400 to-red-400 rounded-full shadow-glow mb-0.5 transform origin-bottom transition-all duration-300"></div>
-                            <div class="w-1.5 h-3 bg-gray-300 rounded-t"></div>
-                            <div class="w-4 h-14 bg-gradient-to-r from-purple-300 via-purple-400 to-purple-300 rounded-sm shadow-sm border-t border-white/50"></div>
-                        </div>
-                        <!-- Candle 3 -->
-                        <div class="candle group cursor-pointer flex flex-col items-center" onclick="extinguishCandle(2)">
-                            <div id="flame-2" class="flame flame-active w-4 h-6 bg-gradient-to-t from-yellow-500 via-orange-400 to-red-400 rounded-full shadow-glow mb-0.5 transform origin-bottom transition-all duration-300"></div>
-                            <div class="w-1.5 h-3 bg-gray-300 rounded-t"></div>
-                            <div class="w-4 h-12 bg-gradient-to-r from-roseGold via-rose-400 to-roseGold rounded-sm shadow-sm border-t border-white/50"></div>
-                        </div>
-                    </div>
-
-                    <!-- Cake Layers -->
-                    <!-- Top Frosting & Toppings -->
-                    <div class="w-48 h-10 bg-white rounded-t-3xl border-b-4 border-pink-200 relative z-10 shadow-sm flex items-center justify-around px-3">
-                        <span class="text-xs">🌸</span>
-                        <span class="text-xs">✨</span>
-                        <span class="text-xs">🍓</span>
-                        <span class="text-xs">✨</span>
-                        <span class="text-xs">🌸</span>
-                    </div>
-                    <!-- Cake Top Tier -->
-                    <div class="w-48 h-14 bg-gradient-to-r from-pink-200 via-softRose to-pink-200 rounded-b-lg relative border-b-4 border-pink-300 shadow-sm flex items-center justify-center">
-                        <span class="text-xs font-handwriting text-deepRose font-bold tracking-widest uppercase">JADEE 💖</span>
-                    </div>
-                    <!-- Cake Bottom Tier -->
-                    <div class="w-60 h-16 bg-gradient-to-r from-purple-200 via-lavender to-purple-200 rounded-t-xl rounded-b-2xl relative border-b-4 border-purple-300 shadow-md flex items-center justify-center">
-                        <div class="w-full flex justify-around px-4">
-                            <span class="text-sm">🍓</span>
-                            <span class="text-sm">🍓</span>
-                            <span class="text-sm">🍓</span>
-                        </div>
-                    </div>
-                    <!-- Cake Stand Plate -->
-                    <div class="w-68 sm:w-72 h-4 bg-gradient-to-r from-gray-200 via-white to-gray-200 rounded-full shadow-lg border border-gray-300"></div>
+                <!-- Cake Layers -->
+                <div class="w-full bg-gradient-to-r from-pink-400 via-rose-300 to-pink-400 h-16 rounded-t-2xl shadow-lg relative border-b-4 border-pink-200/40 flex items-center justify-center">
+                    <span class="text-xl">✨ 💖 ✨</span>
                 </div>
-
-                <!-- Status Banner & Blow All Button -->
-                <div class="space-y-3">
-                    <p id="candle-status" class="text-sm font-semibold text-deepRose animate-pulse">
-                        🔥 3 Candles lit! Blow on them to make your wish come true!
-                    </p>
-                    <button id="blow-btn" onclick="blowAllCandles()" class="px-6 py-2.5 rounded-full bg-gradient-to-r from-deepRose to-roseGold text-white font-medium shadow-card hover:shadow-glow hover:scale-105 active:scale-95 transition-all duration-300 text-sm">
-                        💨 Blow All Candles
-                    </button>
+                <div class="w-full bg-gradient-to-r from-purple-800 via-purple-700 to-purple-800 h-20 rounded-b-2xl shadow-2xl flex items-center justify-center relative overflow-hidden">
+                    <div class="absolute inset-0 bg-white/5 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                    <p class="font-handwriting text-3xl text-pink-200 z-10 font-bold">Varsha Jadee</p>
                 </div>
+                <!-- Cake Stand -->
+                <div class="w-72 sm:w-96 h-4 bg-slate-300/30 mx-auto rounded-full mt-1 blur-xs"></div>
+            </div>
+
+            <!-- Cake Message Revealed when candles blown out -->
+            <div id="cakeWishBox" class="hidden mt-6 p-4 rounded-2xl bg-pink-500/20 border border-pink-400/30 text-pink-200 text-sm sm:text-base animate-bounce">
+                🎉 May all your secret wishes, dreams, and joyful prayers come true this year, Jadee! 🌟
             </div>
         </section>
 
-        <!-- Interactive Gift Box Section -->
-        <section class="glass-card rounded-3xl p-6 sm:p-10 shadow-glass border border-white/80 text-center relative">
-            <div class="max-w-2xl mx-auto space-y-6">
-                <div class="space-y-2">
-                    <span class="text-xs font-bold tracking-widest text-deepRose uppercase bg-softRose/50 px-3 py-1 rounded-full">Secret Surprises</span>
-                    <h2 class="text-3xl font-serif font-bold text-gray-800">Unwrap Your Special Gift 🎁</h2>
-                    <p class="text-sm text-gray-600">Tap the gift box below to unwrap a heartfelt letter written especially for you, Jadee!</p>
+        <!-- SECTION 3: THE VERY SPECIAL SURPRISE (TIME CAPSULE LOCKBOX) -->
+        <section id="special-surprise" class="scroll-mt-10">
+            <div class="text-center mb-8">
+                <span class="px-4 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 text-xs font-bold uppercase tracking-wider">
+                    👑 Top Secret Experience
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold font-serif-title mt-3 gold-glow text-amber-200">
+                    Jadee's Birthday Time Capsule
+                </h2>
+                <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mt-2">
+                    A special vault crafted exclusively for you. Unlock each stage to reveal your gifts!
+                </p>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border-2 border-amber-500/30 relative overflow-hidden shadow-2xl">
+                <!-- Vault Header Progress Indicator -->
+                <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-8">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-vault text-amber-400 text-xl"></i>
+                        <span class="font-bold text-amber-200 text-sm">VIP Bestie Lockbox</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <span id="badge-stage-1" class="w-3 h-3 rounded-full bg-amber-400 animate-pulse"></span>
+                        <span id="badge-stage-2" class="w-3 h-3 rounded-full bg-slate-600"></span>
+                        <span id="badge-stage-3" class="w-3 h-3 rounded-full bg-slate-600"></span>
+                        <span id="badge-stage-4" class="w-3 h-3 rounded-full bg-slate-600"></span>
+                    </div>
                 </div>
 
-                <!-- Gift Box Graphic -->
-                <div id="gift-box-wrapper" class="py-6">
-                    <button id="gift-box" onclick="openGiftBox()" class="relative inline-block group cursor-pointer transform hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none">
-                        <!-- Floating sparkles around gift -->
-                        <div class="absolute -top-3 -right-3 text-xl animate-bounce">✨</div>
-                        <div class="absolute -bottom-2 -left-3 text-xl animate-pulse">💖</div>
+                <!-- SURPRISE STAGE 1: LOCK SCREEN -->
+                <div id="surprise-stage-1" class="text-center py-8 space-y-6">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 flex items-center justify-center text-slate-900 text-4xl shadow-lg pulse-glow cursor-pointer" onclick="nextSurpriseStage(2)">
+                        <i class="fa-solid fa-key"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Ready for your big surprise?</h3>
+                        <p class="text-slate-300 text-sm max-w-md mx-auto">
+                            Touch the Golden Key above to unlock Jadee's Time Capsule of Memories & Rewards!
+                        </p>
+                    </div>
+                    <button onclick="nextSurpriseStage(2)" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-slate-950 font-bold text-sm hover:brightness-110 transition-all shadow-xl">
+                        Unlock Surprise Vault 🔓
+                    </button>
+                </div>
 
-                        <!-- 3D Box Styling -->
-                        <div class="w-32 h-32 sm:w-36 sm:h-36 bg-gradient-to-br from-deepRose via-pink-500 to-purple-600 rounded-2xl shadow-glow relative flex items-center justify-center border-2 border-white/60">
-                            <!-- Vertical Ribbon -->
-                            <div class="absolute w-8 h-full bg-gradient-to-r from-amber-200 via-yellow-300 to-amber-200 shadow-md"></div>
-                            <!-- Horizontal Ribbon -->
-                            <div class="absolute h-8 w-full bg-gradient-to-b from-amber-200 via-yellow-300 to-amber-200 shadow-md"></div>
-                            <!-- Ribbon Bow Top -->
-                            <div class="absolute -top-6 text-5xl filter drop-shadow-md group-hover:rotate-12 transition-transform">
-                                🎀
+                <!-- SURPRISE STAGE 2: BEST FRIEND CERTIFICATE -->
+                <div id="surprise-stage-2" class="hidden text-center space-y-6 py-4">
+                    <div class="border-4 border-double border-amber-400/60 p-6 sm:p-8 rounded-2xl bg-amber-950/20 relative">
+                        <div class="absolute top-3 left-3 text-amber-400 text-xs">OFFICIAL CERTIFICATE</div>
+                        <div class="text-amber-400 text-4xl mb-3"><i class="fa-solid fa-award"></i></div>
+                        <h3 class="text-2xl sm:text-3xl font-serif-title font-bold text-amber-200">
+                            BEST FRIEND OF THE UNIVERSE
+                        </h3>
+                        <p class="text-xs text-amber-300/80 uppercase tracking-widest mt-1">Awarded To</p>
+                        <h4 class="text-3xl sm:text-4xl font-handwriting font-bold text-pink-300 my-2">
+                            Varsha (Jadee)
+                        </h4>
+                        <p class="text-slate-300 text-sm max-w-lg mx-auto leading-relaxed">
+                            For being an incomparably kind, hilarious, trustworthy, and wonderful soul. Certified bestie who makes every ordinary day extraordinary.
+                        </p>
+                        <div class="mt-6 flex justify-between items-center text-xs text-slate-400 border-t border-amber-500/20 pt-4">
+                            <span>Valid Lifetime ∞</span>
+                            <span>Signed with Love 💖</span>
+                        </div>
+                    </div>
+                    <button onclick="nextSurpriseStage(3)" class="px-8 py-3 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold text-sm hover:opacity-90 transition-all">
+                        Claim Your Friendship Coupons 🎟️ (Next)
+                    </button>
+                </div>
+
+                <!-- SURPRISE STAGE 3: FRIENDSHIP GIFT COUPONS -->
+                <div id="surprise-stage-3" class="hidden space-y-6">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold text-pink-200 font-serif-title">
+                            VIP Bestie Redeemable Coupons 🎟️
+                        </h3>
+                        <p class="text-slate-300 text-xs sm:text-sm mt-1">
+                            These coupons can be redeemed by you anytime! Tap to claim.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Coupon 1 -->
+                        <div onclick="claimCoupon(this)" class="glass-card p-4 rounded-2xl border-l-4 border-pink-500 cursor-pointer hover:bg-white/10 transition-all flex items-center justify-between group">
+                            <div>
+                                <div class="text-xs text-pink-400 font-bold">COUPON #01</div>
+                                <div class="font-bold text-white text-sm">1x Free Coffee & Deep Gossip Session</div>
+                                <div class="text-xs text-slate-400 mt-1">Expires: Never!</div>
                             </div>
+                            <span class="px-3 py-1 rounded-full bg-pink-500/20 text-pink-300 text-xs font-semibold group-hover:bg-pink-500 group-hover:text-white transition-all">
+                                Redeem
+                            </span>
                         </div>
-                    </button>
+
+                        <!-- Coupon 2 -->
+                        <div onclick="claimCoupon(this)" class="glass-card p-4 rounded-2xl border-l-4 border-purple-500 cursor-pointer hover:bg-white/10 transition-all flex items-center justify-between group">
+                            <div>
+                                <div class="text-xs text-purple-400 font-bold">COUPON #02</div>
+                                <div class="font-bold text-white text-sm">1x Late Night Venting Pass</div>
+                                <div class="text-xs text-slate-400 mt-1">24/7 Priority Hotline</div>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-semibold group-hover:bg-purple-500 group-hover:text-white transition-all">
+                                Redeem
+                            </span>
+                        </div>
+
+                        <!-- Coupon 3 -->
+                        <div onclick="claimCoupon(this)" class="glass-card p-4 rounded-2xl border-l-4 border-amber-500 cursor-pointer hover:bg-white/10 transition-all flex items-center justify-between group">
+                            <div>
+                                <div class="text-xs text-amber-400 font-bold">COUPON #03</div>
+                                <div class="font-bold text-white text-sm">1x Food Treat & Shopping Spree Escort</div>
+                                <div class="text-xs text-slate-400 mt-1">Your Favorite Food Place</div>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-semibold group-hover:bg-amber-500 group-hover:text-white transition-all">
+                                Redeem
+                            </span>
+                        </div>
+
+                        <!-- Coupon 4 -->
+                        <div onclick="claimCoupon(this)" class="glass-card p-4 rounded-2xl border-l-4 border-rose-500 cursor-pointer hover:bg-white/10 transition-all flex items-center justify-between group">
+                            <div>
+                                <div class="text-xs text-rose-400 font-bold">COUPON #04</div>
+                                <div class="font-bold text-white text-sm">Unlimited Hugs & Good Vibes</div>
+                                <div class="text-xs text-slate-400 mt-1">Unlimited Uses</div>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 text-xs font-semibold group-hover:bg-rose-500 group-hover:text-white transition-all">
+                                Redeem
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="text-center pt-4">
+                        <button onclick="nextSurpriseStage(4)" class="px-8 py-3 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-slate-950 font-bold text-sm hover:brightness-110 transition-all">
+                            Open The Secret Emotional Letter 💌 (Final Surprise)
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Secret Birthday Letter Modal / Revealed Card -->
-                <div id="letter-modal" class="hidden glass-card-darker rounded-2xl p-6 sm:p-8 text-left space-y-4 border border-roseGold/30 shadow-card animate-fade-in">
-                    <div class="flex justify-between items-center border-b border-roseGold/20 pb-3">
-                        <h3 class="text-xl sm:text-2xl font-serif font-bold text-deepRose">Dearest Varsha (Jadee) ✨</h3>
-                        <span class="text-2xl">💌</span>
+                <!-- SURPRISE STAGE 4: SECRET EMOTIONAL LETTER -->
+                <div id="surprise-stage-4" class="hidden space-y-6">
+                    <div class="p-6 sm:p-8 rounded-3xl bg-slate-900/80 border border-pink-500/30 space-y-4 text-slate-200 leading-relaxed text-sm sm:text-base relative">
+                        <div class="text-pink-400 text-2xl"><i class="fa-solid fa-heart"></i></div>
+                        <h3 class="text-2xl font-serif-title font-bold text-pink-200">
+                            Dearest Varsha (Jadee),
+                        </h3>
+                        <p>
+                            Happy Birthday! Words often fall short when trying to express how truly grateful I am to have you in my life. You are that rare, priceless kind of friend who brightens up even the cloudiest days just by being yourself.
+                        </p>
+                        <p>
+                            Thank you for all the shared giggles, the endless conversations, the support during tough moments, and every single sweet memory we've created so far. Having you as a best friend is a blessing I will always cherish.
+                        </p>
+                        <p class="font-semibold text-pink-300">
+                            Never forget how special, capable, and loved you are. May this new year bring you limitless happiness, success, laughter, and all the love you so deeply deserve!
+                        </p>
+                        <p class="pt-2 font-handwriting text-2xl text-purple-300">
+                            Always & Forever Your Bestie ✨
+                        </p>
                     </div>
-                    <div class="space-y-3 text-gray-700 text-sm sm:text-base leading-relaxed font-sans">
-                        <p>
-                            Happy Birthday to the most amazing, hilarious, kind, and irreplaceable best friend anyone could ever ask for! 🥂💖
-                        </p>
-                        <p>
-                            Having you in my life as <strong>Jadee</strong> makes every day brighter, every conversation infinitely funnier, and every tough moment so much easier. Thank you for always being my go-to person, my partner in crime, and the best confidante.
-                        </p>
-                        <p>
-                            May this new year of your life bring you endless happiness, boundless success, unforgettable adventures, lots of good food, and all the love your heart can hold!
-                        </p>
-                        <p class="font-handwriting text-2xl text-deepRose pt-2 font-bold">
-                            Always & Forever Besties, 💕<br>
-                            Your Best Friend
-                        </p>
-                    </div>
-                    <div class="pt-2 text-right">
-                        <button onclick="closeLetter()" class="text-xs text-gray-500 hover:text-deepRose underline">Close Letter</button>
+
+                    <div class="text-center">
+                        <button onclick="triggerConfetti(); alert('💖 Sending you the biggest birthday virtual hug!')" class="px-8 py-3 rounded-full bg-pink-500 hover:bg-pink-600 text-white font-bold text-sm transition-all shadow-lg shadow-pink-500/30">
+                            Send Virtual Hug & Love 🤗
+                        </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- "Why You're My Bestie" Interactive Flip Cards Grid -->
+        <!-- SECTION 4: WHY YOU'RE MY BESTIE (INTERACTIVE FLIP CARDS) -->
         <section class="space-y-6">
-            <div class="text-center space-y-2">
-                <span class="text-xs font-bold tracking-widest text-deepRose uppercase bg-softRose/50 px-3 py-1 rounded-full">Endless Appreciation</span>
-                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-gray-800">Why You're My Bestie 🌸</h2>
-                <p class="text-sm text-gray-600">Click on any card to flip it over and see why you're one in a million!</p>
+            <div class="text-center">
+                <h2 class="text-3xl font-serif-title font-bold text-purple-200">
+                    Why You're My Bestie 💖
+                </h2>
+                <p class="text-slate-300 text-sm mt-1">
+                    Tap any card below to flip it over!
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <!-- Flip Card 1 -->
-                <div class="h-56 perspective-1000 cursor-pointer group" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner relative w-full h-full duration-500 transform-style-3d transition-transform">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="h-48 perspective-1000 cursor-pointer" onclick="flipCard(this)">
+                    <div class="relative w-full h-full transform-style-3d glass-card rounded-2xl p-6 flex flex-col justify-center items-center text-center shadow-lg">
                         <!-- Front -->
-                        <div class="absolute w-full h-full glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center space-y-3 border border-white/80 shadow-sm group-hover:border-softRose">
-                            <span class="text-4xl">👑</span>
-                            <h3 class="font-serif font-bold text-lg text-gray-800">The Ultimate Vibe</h3>
-                            <p class="text-xs text-deepRose font-medium">Click to reveal ✨</p>
+                        <div class="absolute inset-0 backface-hidden flex flex-col items-center justify-center p-4">
+                            <div class="w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-300 text-xl mb-3">
+                                🌟
+                            </div>
+                            <h3 class="font-bold text-slate-100">Pure Gold Heart</h3>
+                            <p class="text-xs text-pink-300 mt-1">Tap to flip</p>
                         </div>
                         <!-- Back -->
-                        <div class="absolute w-full h-full glass-card-darker rounded-2xl p-6 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden border border-softRose shadow-md">
-                            <p class="text-sm text-gray-700 font-medium leading-relaxed">
-                                "You bring the best energy into every room! Life is never boring when Jadee is around."
-                            </p>
-                            <span class="mt-3 text-xs text-deepRose font-bold">10/10 Bestie Points 💖</span>
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-purple-900 to-indigo-900 rounded-2xl p-4 flex items-center justify-center text-xs text-slate-200 text-center leading-relaxed border border-pink-400/30">
+                            You genuinely care for people with so much warmth. Your kindness is a rare superpower!
                         </div>
                     </div>
                 </div>
 
-                <!-- Flip Card 2 -->
-                <div class="h-56 perspective-1000 cursor-pointer group" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner relative w-full h-full duration-500 transform-style-3d transition-transform">
+                <!-- Card 2 -->
+                <div class="h-48 perspective-1000 cursor-pointer" onclick="flipCard(this)">
+                    <div class="relative w-full h-full transform-style-3d glass-card rounded-2xl p-6 flex flex-col justify-center items-center text-center shadow-lg">
                         <!-- Front -->
-                        <div class="absolute w-full h-full glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center space-y-3 border border-white/80 shadow-sm group-hover:border-softRose">
-                            <span class="text-4xl">🔮</span>
-                            <h3 class="font-serif font-bold text-lg text-gray-800">Mind Reader</h3>
-                            <p class="text-xs text-deepRose font-medium">Click to reveal ✨</p>
+                        <div class="absolute inset-0 backface-hidden flex flex-col items-center justify-center p-4">
+                            <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-300 text-xl mb-3">
+                                😂
+                            </div>
+                            <h3 class="font-bold text-slate-100">Unmatched Vibe & Humor</h3>
+                            <p class="text-xs text-purple-300 mt-1">Tap to flip</p>
                         </div>
                         <!-- Back -->
-                        <div class="absolute w-full h-full glass-card-darker rounded-2xl p-6 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden border border-softRose shadow-md">
-                            <p class="text-sm text-gray-700 font-medium leading-relaxed">
-                                "We don't even need words sometimes. Just one look and we both know exactly what we're thinking!"
-                            </p>
-                            <span class="mt-3 text-xs text-deepRose font-bold">Telepathic Besties 🧠</span>
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-pink-900 to-purple-900 rounded-2xl p-4 flex items-center justify-center text-xs text-slate-200 text-center leading-relaxed border border-purple-400/30">
+                            Nobody can make me laugh or match my crazy energy quite like you do, Jadee!
                         </div>
                     </div>
                 </div>
 
-                <!-- Flip Card 3 -->
-                <div class="h-56 perspective-1000 cursor-pointer group" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner relative w-full h-full duration-500 transform-style-3d transition-transform">
+                <!-- Card 3 -->
+                <div class="h-48 perspective-1000 cursor-pointer" onclick="flipCard(this)">
+                    <div class="relative w-full h-full transform-style-3d glass-card rounded-2xl p-6 flex flex-col justify-center items-center text-center shadow-lg">
                         <!-- Front -->
-                        <div class="absolute w-full h-full glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center space-y-3 border border-white/80 shadow-sm group-hover:border-softRose">
-                            <span class="text-4xl">🍕</span>
-                            <h3 class="font-serif font-bold text-lg text-gray-800">Partner in Crime</h3>
-                            <p class="text-xs text-deepRose font-medium">Click to reveal ✨</p>
+                        <div class="absolute inset-0 backface-hidden flex flex-col items-center justify-center p-4">
+                            <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-300 text-xl mb-3">
+                                🛡️
+                            </div>
+                            <h3 class="font-bold text-slate-100">Always Reliable</h3>
+                            <p class="text-xs text-amber-300 mt-1">Tap to flip</p>
                         </div>
                         <!-- Back -->
-                        <div class="absolute w-full h-full glass-card-darker rounded-2xl p-6 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden border border-softRose shadow-md">
-                            <p class="text-sm text-gray-700 font-medium leading-relaxed">
-                                "From late night cravings to crazy spontaneous plans, nobody does food and fun like us!"
-                            </p>
-                            <span class="mt-3 text-xs text-deepRose font-bold">Foodie Duo For Life 🍰</span>
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-slate-900 to-purple-950 rounded-2xl p-4 flex items-center justify-center text-xs text-slate-200 text-center leading-relaxed border border-amber-400/30">
+                            Through every thick and thin, you've been a rock solid supporter I can always count on.
                         </div>
                     </div>
                 </div>
-
-                <!-- Flip Card 4 -->
-                <div class="h-56 perspective-1000 cursor-pointer group" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner relative w-full h-full duration-500 transform-style-3d transition-transform">
-                        <!-- Front -->
-                        <div class="absolute w-full h-full glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center space-y-3 border border-white/80 shadow-sm group-hover:border-softRose">
-                            <span class="text-4xl">🛡️</span>
-                            <h3 class="font-serif font-bold text-lg text-gray-800">Always Got My Back</h3>
-                            <p class="text-xs text-deepRose font-medium">Click to reveal ✨</p>
-                        </div>
-                        <!-- Back -->
-                        <div class="absolute w-full h-full glass-card-darker rounded-2xl p-6 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden border border-softRose shadow-md">
-                            <p class="text-sm text-gray-700 font-medium leading-relaxed">
-                                "You're the most loyal, supportive person I know. Through ups and downs, Jadee is always there."
-                            </p>
-                            <span class="mt-3 text-xs text-deepRose font-bold">Unbreakable Bond 💎</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Flip Card 5 -->
-                <div class="h-56 perspective-1000 cursor-pointer group" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner relative w-full h-full duration-500 transform-style-3d transition-transform">
-                        <!-- Front -->
-                        <div class="absolute w-full h-full glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center space-y-3 border border-white/80 shadow-sm group-hover:border-softRose">
-                            <span class="text-4xl">😂</span>
-                            <h3 class="font-serif font-bold text-lg text-gray-800">Top Tier Humor</h3>
-                            <p class="text-xs text-deepRose font-medium">Click to reveal ✨</p>
-                        </div>
-                        <!-- Back -->
-                        <div class="absolute w-full h-full glass-card-darker rounded-2xl p-6 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden border border-softRose shadow-md">
-                            <p class="text-sm text-gray-700 font-medium leading-relaxed">
-                                "Nobody makes me laugh until my stomach hurts quite like Varsha. Your memes and jokes are unmatched!"
-                            </p>
-                            <span class="mt-3 text-xs text-deepRose font-bold">Comedy Queen 👑</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Flip Card 6 -->
-                <div class="h-56 perspective-1000 cursor-pointer group" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner relative w-full h-full duration-500 transform-style-3d transition-transform">
-                        <!-- Front -->
-                        <div class="absolute w-full h-full glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center space-y-3 border border-white/80 shadow-sm group-hover:border-softRose">
-                            <span class="text-4xl">🌟</span>
-                            <h3 class="font-serif font-bold text-lg text-gray-800">Pure Sunshine</h3>
-                            <p class="text-xs text-deepRose font-medium">Click to reveal ✨</p>
-                        </div>
-                        <!-- Back -->
-                        <div class="absolute w-full h-full glass-card-darker rounded-2xl p-6 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden border border-softRose shadow-md">
-                            <p class="text-sm text-gray-700 font-medium leading-relaxed">
-                                "Just being yourself makes the world a warmer, kinder, and brighter place. Keep shining, Jadee!"
-                            </p>
-                            <span class="mt-3 text-xs text-deepRose font-bold">Shine On ✨</span>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
 
-        <!-- Interactive Polaroid Memory Frames -->
-        <section class="glass-card rounded-3xl p-6 sm:p-10 shadow-glass border border-white/80 space-y-6">
-            <div class="text-center space-y-2">
-                <span class="text-xs font-bold tracking-widest text-deepRose uppercase bg-softRose/50 px-3 py-1 rounded-full">Memory Lane</span>
-                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-gray-800">Our Favorite Moments 📸</h2>
-                <p class="text-sm text-gray-600">Golden memories with Jadee! Tap any polaroid to preview.</p>
+        <!-- SECTION 5: POLAROID MEMORY GALLERY -->
+        <section class="space-y-6">
+            <div class="text-center">
+                <h2 class="text-3xl font-serif-title font-bold text-pink-200">
+                    Aesthetic Memory Corner 📸
+                </h2>
+                <p class="text-slate-300 text-sm mt-1">
+                    Snapshots of sweet moments & happy energy!
+                </p>
             </div>
 
-            <!-- Polaroid Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
-                
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 <!-- Polaroid 1 -->
-                <div class="bg-white p-4 rounded-xl shadow-card transform hover:-rotate-2 hover:scale-105 transition-all duration-300 border border-gray-100 flex flex-col items-center">
-                    <div class="w-full h-48 bg-pastelPink rounded-lg overflow-hidden relative flex items-center justify-center group">
-                        <img id="img-1" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80" alt="Best friends memory" class="w-full h-full object-cover">
-                        <label for="upload-1" class="absolute inset-0 bg-black/40 text-white flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer text-xs font-medium">
-                            <i class="fa-solid fa-camera text-xl mb-1"></i>
-                            Change Photo
+                <div class="bg-white p-4 rounded-lg shadow-xl transform hover:-rotate-2 transition-all duration-300">
+                    <div class="bg-slate-200 h-52 rounded overflow-hidden relative group">
+                        <img id="img-1" src="https://placehold.co/400x500/e9d5ff/3b0764?text=Varsha+&+Bestie" alt="Memory 1" class="w-full h-full object-cover">
+                        <label for="upload-1" class="absolute inset-0 bg-black/40 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer text-xs font-semibold">
+                            📷 Change Photo
                         </label>
                         <input type="file" id="upload-1" accept="image/*" class="hidden" onchange="previewImage(event, 'img-1')">
                     </div>
-                    <p class="font-handwriting text-xl text-gray-700 mt-3 font-semibold">Unstoppable Duo ✨</p>
+                    <p class="font-handwriting text-xl text-slate-800 text-center mt-3 font-bold">Unstoppable Duo ✨</p>
                 </div>
 
                 <!-- Polaroid 2 -->
-                <div class="bg-white p-4 rounded-xl shadow-card transform hover:rotate-2 hover:scale-105 transition-all duration-300 border border-gray-100 flex flex-col items-center">
-                    <div class="w-full h-48 bg-lavender rounded-lg overflow-hidden relative flex items-center justify-center group">
-                        <img id="img-2" src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80" alt="Fun times" class="w-full h-full object-cover">
-                        <label for="upload-2" class="absolute inset-0 bg-black/40 text-white flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer text-xs font-medium">
-                            <i class="fa-solid fa-camera text-xl mb-1"></i>
-                            Change Photo
+                <div class="bg-white p-4 rounded-lg shadow-xl transform hover:rotate-2 transition-all duration-300">
+                    <div class="bg-slate-200 h-52 rounded overflow-hidden relative group">
+                        <img id="img-2" src="https://placehold.co/400x500/f472b6/831843?text=Jadee's+Smile" alt="Memory 2" class="w-full h-full object-cover">
+                        <label for="upload-2" class="absolute inset-0 bg-black/40 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer text-xs font-semibold">
+                            📷 Change Photo
                         </label>
                         <input type="file" id="upload-2" accept="image/*" class="hidden" onchange="previewImage(event, 'img-2')">
                     </div>
-                    <p class="font-handwriting text-xl text-gray-700 mt-3 font-semibold">Good Times & Laughter 😂</p>
+                    <p class="font-handwriting text-xl text-slate-800 text-center mt-3 font-bold">Pure Sunshine ☀️</p>
                 </div>
 
                 <!-- Polaroid 3 -->
-                <div class="bg-white p-4 rounded-xl shadow-card transform hover:-rotate-1 hover:scale-105 transition-all duration-300 border border-gray-100 flex flex-col items-center">
-                    <div class="w-full h-48 bg-warmCream rounded-lg overflow-hidden relative flex items-center justify-center group">
-                        <img id="img-3" src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80" alt="Celebration" class="w-full h-full object-cover">
-                        <label for="upload-3" class="absolute inset-0 bg-black/40 text-white flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer text-xs font-medium">
-                            <i class="fa-solid fa-camera text-xl mb-1"></i>
-                            Change Photo
+                <div class="bg-white p-4 rounded-lg shadow-xl transform hover:-rotate-1 transition-all duration-300">
+                    <div class="bg-slate-200 h-52 rounded overflow-hidden relative group">
+                        <img id="img-3" src="https://placehold.co/400x500/c084fc/4c1d95?text=Forever+Friends" alt="Memory 3" class="w-full h-full object-cover">
+                        <label for="upload-3" class="absolute inset-0 bg-black/40 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer text-xs font-semibold">
+                            📷 Change Photo
                         </label>
                         <input type="file" id="upload-3" accept="image/*" class="hidden" onchange="previewImage(event, 'img-3')">
                     </div>
-                    <p class="font-handwriting text-xl text-gray-700 mt-3 font-semibold">Forever Besties 💖</p>
+                    <p class="font-handwriting text-xl text-slate-800 text-center mt-3 font-bold">Best Times Ever 💖</p>
                 </div>
-
             </div>
         </section>
 
-        <!-- Interactive Trivia Mini Game -->
-        <section class="glass-card rounded-3xl p-6 sm:p-10 shadow-glass border border-white/80 space-y-6">
-            <div class="text-center space-y-2">
-                <span class="text-xs font-bold tracking-widest text-deepRose uppercase bg-softRose/50 px-3 py-1 rounded-full">Mini Quiz</span>
-                <h2 class="text-3xl font-serif font-bold text-gray-800">How Well Do You Know Our Friendship? 🤔</h2>
-                <p class="text-sm text-gray-600">Answer these simple bestie questions to test your score!</p>
+        <!-- SECTION 6: JAR OF STARS (RANDOM WISH GENERATOR) -->
+        <section class="glass-card rounded-3xl p-6 sm:p-8 text-center space-y-6">
+            <h2 class="text-2xl sm:text-3xl font-serif-title font-bold text-amber-200">
+                Jar of Magical Wishes ⭐
+            </h2>
+            <p class="text-slate-300 text-sm max-w-md mx-auto">
+                Tap the Jar to pull out a glowing wish generated just for Jadee!
+            </p>
+
+            <div class="cursor-pointer text-6xl my-4 inline-block hover:scale-110 transition-transform" onclick="drawWish()">
+                🏺✨
             </div>
 
-            <div id="quiz-container" class="max-w-xl mx-auto glass-card-darker rounded-2xl p-6 border border-softRose space-y-5">
-                <div class="flex justify-between items-center text-xs font-semibold text-deepRose">
-                    <span id="quiz-progress">Question 1 of 3</span>
-                    <span id="quiz-score">Score: 0</span>
-                </div>
-
-                <h3 id="quiz-question" class="text-lg font-bold text-gray-800">
-                    What is Varsha's official ultimate nickname?
-                </h3>
-
-                <div id="quiz-options" class="space-y-3">
-                    <!-- Dynamic Options -->
-                </div>
-
-                <div id="quiz-feedback" class="hidden p-3 rounded-lg text-sm text-center font-medium"></div>
+            <div id="wishOutput" class="min-h-[60px] flex items-center justify-center p-4 rounded-2xl bg-white/5 border border-white/10 text-pink-200 font-medium text-sm sm:text-base">
+                Click the Jar to reveal a wish!
             </div>
         </section>
 
-        <!-- Wish Generator Box -->
-        <section class="glass-card rounded-3xl p-6 sm:p-8 shadow-glass border border-white/80 text-center space-y-4">
-            <h3 class="text-xl font-serif font-bold text-gray-800">Need a Extra Dose of Birthday Magic? ✨</h3>
-            <p class="text-sm text-gray-600">Tap below to draw a special custom birthday wish just for Jadee!</p>
-
-            <button onclick="generateRandomWish()" class="px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-deepRose text-white font-medium shadow-card hover:shadow-glow hover:scale-105 active:scale-95 transition-all text-sm">
-                🎲 Draw Birthday Wish
-            </button>
-
-            <div id="wish-display" class="hidden max-w-lg mx-auto p-4 rounded-xl bg-white/80 border border-softRose text-deepRose font-serif italic text-base shadow-sm animate-fade-in">
-                <!-- Random wish text -->
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="text-center pt-8 border-t border-roseGold/20 text-xs text-gray-500 space-y-2">
-            <p>Crafted with endless love & sparkles for <strong>Varsha (Jadee)</strong> 💖</p>
-            <p>© 2026 Bestie Birthday Special Edition</p>
+        <!-- FOOTER -->
+        <footer class="text-center text-slate-400 text-xs py-6 border-t border-white/10">
+            Made with endless love & sparkles for <span class="text-pink-300 font-semibold">Varsha (Jadee)</span> 💖
         </footer>
 
-    </main>
+    </div>
 
     <script>
-        /* ----------------------------------------------------
-           1. Background Particle Canvas Animation
-        ---------------------------------------------------- */
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        class Particle {
-            constructor() {
-                this.reset();
-            }
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = canvas.height + Math.random() * 100;
-                this.size = Math.random() * 14 + 6;
-                this.speedY = Math.random() * 1.5 + 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.8;
-                this.opacity = Math.random() * 0.6 + 0.2;
-                this.type = Math.random() > 0.5 ? 'heart' : 'sparkle';
-                this.color = ['#FFB6C1', '#D87093', '#E6E6FA', '#FFD1DC'][Math.floor(Math.random() * 4)];
-            }
-            update() {
-                this.y -= this.speedY;
-                this.x += this.speedX;
-                if (this.y < -20) this.reset();
-            }
-            draw() {
-                ctx.save();
-                ctx.globalAlpha = this.opacity;
-                ctx.fillStyle = this.color;
-                if (this.type === 'heart') {
-                    ctx.font = `${this.size}px sans-serif`;
-                    ctx.fillText('💖', this.x, this.y);
-                } else {
-                    ctx.font = `${this.size}px sans-serif`;
-                    ctx.fillText('✨', this.x, this.y);
-                }
-                ctx.restore();
-            }
-        }
-
-        for (let i = 0; i < 35; i++) {
-            particles.push(new Particle());
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
-
-        /* ----------------------------------------------------
-           2. Web Audio API Background Tune Generator
-        ---------------------------------------------------- */
-        let audioCtx = null;
-        let isPlaying = false;
-        let musicInterval = null;
-
-        const musicBtn = document.getElementById('music-toggle');
-        const musicIcon = document.getElementById('music-icon');
-        const musicText = document.getElementById('music-text');
-
-        // Happy Birthday Note Frequencies (Hz)
-        const notes = [
-            261.63, 261.63, 293.66, 261.63, 349.23, 329.63, // Happy birthday to you
-            261.63, 261.63, 293.66, 261.63, 392.00, 349.23, // Happy birthday to you
-            261.63, 261.63, 523.25, 440.00, 349.23, 329.63, 293.66, // Happy birthday dear Varsha
-            466.16, 466.16, 440.00, 349.23, 392.00, 349.23  // Happy birthday to you
-        ];
-        const durations = [
-            0.4, 0.4, 0.8, 0.8, 0.8, 1.2,
-            0.4, 0.4, 0.8, 0.8, 0.8, 1.2,
-            0.4, 0.4, 0.8, 0.8, 0.8, 0.8, 1.2,
-            0.4, 0.4, 0.8, 0.8, 0.8, 1.5
-        ];
-
-        let currentNoteIndex = 0;
-
-        function playNote(freq, duration) {
-            if (!audioCtx) return;
-            try {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration - 0.05);
-
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-
-                osc.start();
-                osc.stop(audioCtx.currentTime + duration);
-            } catch (e) {
-                console.error("Audio error:", e);
-            }
-        }
-
-        musicBtn.addEventListener('click', () => {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-
-            if (isPlaying) {
-                // Pause music
-                clearInterval(musicInterval);
-                isPlaying = false;
-                musicIcon.className = 'fa-solid fa-music';
-                musicText.innerText = 'Play Birthday Melody';
-            } else {
-                // Play music loop
-                isPlaying = true;
-                musicIcon.className = 'fa-solid fa-pause';
-                musicText.innerText = 'Pause Melody';
-                
-                if (audioCtx.state === 'suspended') {
-                    audioCtx.resume();
-                }
-
-                currentNoteIndex = 0;
-                playNextNote();
-            }
-        });
-
-        function playNextNote() {
-            if (!isPlaying) return;
-            const freq = notes[currentNoteIndex];
-            const dur = durations[currentNoteIndex];
-            playNote(freq, dur);
-
-            currentNoteIndex = (currentNoteIndex + 1) % notes.length;
-            musicInterval = setTimeout(playNextNote, dur * 800);
-        }
-
-        /* ----------------------------------------------------
-           3. Interactive Candle Blowing Logic
-        ---------------------------------------------------- */
-        let candlesLit = [true, true, true];
-
-        function extinguishCandle(index) {
-            if (!candlesLit[index]) return;
+        /* Ambient Sparkles floating logic */
+        function createParticles() {
+            const container = document.getElementById('particle-container');
+            const particleCount = 30;
             
-            candlesLit[index] = false;
-            const flameEl = document.getElementById(`flame-${index}`);
-            if (flameEl) {
-                flameEl.style.opacity = '0';
-                flameEl.style.transform = 'scale(0)';
-                flameEl.classList.remove('flame-active');
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'absolute rounded-full pointer-events-none';
+                
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                const colors = ['#f472b6', '#c084fc', '#fbbf24', '#ffffff'];
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.opacity = Math.random() * 0.7 + 0.3;
+                
+                particle.style.animation = `float ${Math.random() * 5 + 5}s ease-in-out infinite`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(particle);
             }
-
-            // Small spark confetti on individual candle blow out
-            confetti({
-                particleCount: 15,
-                spread: 40,
-                origin: { y: 0.4 }
-            });
-
-            checkCandlesState();
         }
 
-        function blowAllCandles() {
-            candlesLit = [false, false, false];
-            for (let i = 0; i < 3; i++) {
-                const flameEl = document.getElementById(`flame-${i}`);
-                if (flameEl) {
-                    flameEl.style.opacity = '0';
-                    flameEl.style.transform = 'scale(0)';
-                    flameEl.classList.remove('flame-active');
-                }
-            }
-            checkCandlesState();
-        }
-
-        function checkCandlesState() {
-            const statusEl = document.getElementById('candle-status');
-            const activeCount = candlesLit.filter(Boolean).length;
-
-            if (activeCount === 0) {
-                statusEl.innerText = '🎉 Yay! Your wish is on its way, Varsha! 💫';
-                statusEl.className = 'text-base font-bold text-deepRose animate-bounce';
-
-                // Grand celebration confetti burst
+        /* Confetti Burst */
+        function triggerConfetti() {
+            if (typeof confetti === 'function') {
                 confetti({
-                    particleCount: 120,
-                    spread: 80,
+                    particleCount: 100,
+                    spread: 70,
                     origin: { y: 0.6 }
                 });
-            } else {
-                statusEl.innerText = `🔥 ${activeCount} candle${activeCount > 1 ? 's' : ''} lit! Blow on them to make your wish come true!`;
             }
         }
 
-        /* ----------------------------------------------------
-           4. Gift Box & Secret Letter Unwrapping
-        ---------------------------------------------------- */
-        function openGiftBox() {
-            const letterModal = document.getElementById('letter-modal');
-            const giftWrapper = document.getElementById('gift-box-wrapper');
+        /* Candle Extinguish logic */
+        let extinguishedCount = 0;
+        function extinguishCandle(id) {
+            const flame = document.getElementById(`flame-${id}`);
+            if (flame && !flame.classList.contains('extinguished')) {
+                flame.classList.add('extinguished');
+                extinguishedCount++;
+                triggerConfetti();
 
-            letterModal.classList.remove('hidden');
-            
-            // Confetti explosion from center
-            confetti({
-                particleCount: 150,
-                spread: 100,
-                origin: { y: 0.5 },
-                colors: ['#FFB6C1', '#D87093', '#E6E6FA', '#FFD1DC', '#FFD700']
-            });
+                if (extinguishedCount === 3) {
+                    document.getElementById('cakeWishBox').classList.remove('hidden');
+                    document.getElementById('cakeInstruction').innerText = "All candles blown out! Wishes locked in! ✨";
+                }
+            }
         }
 
-        function closeLetter() {
-            document.getElementById('letter-modal').classList.add('hidden');
+        /* Surprise Time Capsule Multi-stage flow */
+        function nextSurpriseStage(stageNum) {
+            // Hide all stages
+            for (let i = 1; i <= 4; i++) {
+                const stageEl = document.getElementById(`surprise-stage-${i}`);
+                const badgeEl = document.getElementById(`badge-stage-${i}`);
+                if (stageEl) stageEl.classList.add('hidden');
+                if (badgeEl) {
+                    badgeEl.classList.remove('bg-amber-400', 'animate-pulse');
+                    badgeEl.classList.add('bg-slate-600');
+                }
+            }
+
+            // Show current stage
+            const currentStage = document.getElementById(`surprise-stage-${stageNum}`);
+            const currentBadge = document.getElementById(`badge-stage-${stageNum}`);
+            if (currentStage) currentStage.classList.remove('hidden');
+            if (currentBadge) {
+                currentBadge.classList.remove('bg-slate-600');
+                currentBadge.classList.add('bg-amber-400', 'animate-pulse');
+            }
+
+            triggerConfetti();
         }
 
-        /* ----------------------------------------------------
-           5. Polaroid Image Upload / Preview
-        ---------------------------------------------------- */
-        function previewImage(event, targetImgId) {
+        /* Claim Coupon Logic */
+        function claimCoupon(element) {
+            element.style.opacity = '0.6';
+            const badge = element.querySelector('span');
+            if (badge) {
+                badge.innerText = 'Claimed! ✅';
+                badge.className = 'px-3 py-1 rounded-full bg-green-500/30 text-green-300 text-xs font-semibold';
+            }
+            triggerConfetti();
+        }
+
+        /* Flip Card Logic */
+        function flipCard(cardWrapper) {
+            const cardInner = cardWrapper.querySelector('.transform-style-3d');
+            if (cardInner) {
+                cardInner.classList.toggle('flipped');
+            }
+        }
+
+        /* Photo Upload Preview */
+        function previewImage(event, imgId) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    document.getElementById(targetImgId).src = e.target.result;
+                    document.getElementById(imgId).src = e.target.result;
                 }
                 reader.readAsDataURL(file);
             }
         }
 
-        /* ----------------------------------------------------
-           6. Friendship Mini Quiz Logic
-        ---------------------------------------------------- */
-        const quizData = [
-            {
-                q: "What is Varsha's official ultimate bestie nickname?",
-                options: ["Jadee 💖", "Star Girl 🌟", "Sunshine ☀️", "Boss Lady 👑"],
-                correct: 0,
-                explanation: "Correct! She is the one and only Jadee! ✨"
-            },
-            {
-                q: "What is our bestie superpower?",
-                options: ["Laughing till we cry 😂", "Telepathic look reading 👀", "Always finding good food 🍕", "All of the above! 🎉"],
-                correct: 3,
-                explanation: "Spot on! We possess ALL of these bestie superpowers!"
-            },
-            {
-                q: "What is the best way to celebrate Jadee's birthday?",
-                options: ["Lots of food & cake 🍰", " Endless laughs & memories 💕", "Unwrapping gifts 🎁", "All the love in the world! ✨"],
-                correct: 3,
-                explanation: "Yes! Celebrating Varsha with maximum love and fun!"
-            }
+        /* Wish Generator Array */
+        const wishes = [
+            "✨ May your year be filled with endless smiles, cozy coffee dates, and unshakeable happiness!",
+            "🌟 Wishing you success in every dream you chase and peace in every path you take!",
+            "💖 May you always be surrounded by true friends who uplift you just as you uplift others!",
+            "🎉 Wishing you good health, bountiful laughter, and memories that last a lifetime!",
+            "🌸 May your birthday bring as much warmth to your soul as you bring to everyone around you!"
         ];
 
-        let currentQuizIndex = 0;
-        let quizScore = 0;
-
-        function renderQuizQuestion() {
-            const qData = quizData[currentQuizIndex];
-            document.getElementById('quiz-progress').innerText = `Question ${currentQuizIndex + 1} of ${quizData.length}`;
-            document.getElementById('quiz-score').innerText = `Score: ${quizScore}`;
-            document.getElementById('quiz-question').innerText = qData.q;
-
-            const optionsContainer = document.getElementById('quiz-options');
-            optionsContainer.innerHTML = '';
-
-            document.getElementById('quiz-feedback').classList.add('hidden');
-
-            qData.options.forEach((opt, idx) => {
-                const btn = document.createElement('button');
-                btn.className = "w-full py-2.5 px-4 rounded-xl bg-white/80 border border-softRose hover:bg-softRose hover:text-deepRose font-medium text-sm text-left transition-all duration-200 shadow-sm";
-                btn.innerText = opt;
-                btn.onclick = () => selectQuizAnswer(idx);
-                optionsContainer.appendChild(btn);
-            });
+        function drawWish() {
+            const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
+            const output = document.getElementById('wishOutput');
+            output.innerHTML = `<span class="animate-fade-in">${randomWish}</span>`;
+            triggerConfetti();
         }
 
-        function selectQuizAnswer(selectedIndex) {
-            const qData = quizData[currentQuizIndex];
-            const feedbackEl = document.getElementById('quiz-feedback');
-            feedbackEl.classList.remove('hidden');
+        /* Simple Audio Synthesizer for Birthday Melodies */
+        let audioCtx = null;
+        let isPlaying = false;
 
-            if (selectedIndex === qData.correct) {
-                quizScore += 10;
-                feedbackEl.className = "p-3 rounded-lg text-sm text-center font-medium bg-green-100 text-green-700 border border-green-200";
-                feedbackEl.innerText = "✨ " + qData.explanation;
-                confetti({ particleCount: 30, spread: 50, origin: { y: 0.7 } });
+        function toggleMusic() {
+            const musicText = document.getElementById('musicText');
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            if (!isPlaying) {
+                isPlaying = true;
+                musicText.innerText = "Music On 🎵";
+                playBirthdayTone();
             } else {
-                feedbackEl.className = "p-3 rounded-lg text-sm text-center font-medium bg-pink-100 text-deepRose border border-softRose";
-                feedbackEl.innerText = "Close! But every answer about Jadee is special! ✨";
+                isPlaying = false;
+                musicText.innerText = "Play Music 🎵";
+            }
+        }
+
+        function playBirthdayTone() {
+            if (!isPlaying) return;
+            
+            const notes = [264, 264, 297, 264, 352, 330, 264, 264, 297, 264, 396, 352];
+            let noteIdx = 0;
+
+            function playNextNote() {
+                if (!isPlaying) return;
+                
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(notes[noteIdx], audioCtx.currentTime);
+                
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.4);
+
+                noteIdx = (noteIdx + 1) % notes.length;
+                setTimeout(playNextNote, 500);
             }
 
-            document.getElementById('quiz-score').innerText = `Score: ${quizScore}`;
-
-            setTimeout(() => {
-                currentQuizIndex++;
-                if (currentQuizIndex < quizData.length) {
-                    renderQuizQuestion();
-                } else {
-                    showQuizCompletion();
-                }
-            }, 1800);
+            playNextNote();
         }
 
-        function showQuizCompletion() {
-            const container = document.getElementById('quiz-container');
-            container.innerHTML = `
-                <div class="text-center py-6 space-y-4">
-                    <span class="text-5xl">🏆</span>
-                    <h3 class="text-2xl font-serif font-bold text-deepRose">Quiz Master Bestie!</h3>
-                    <p class="text-sm text-gray-700">You scored <strong>${quizScore} / ${quizData.length * 10}</strong> points!</p>
-                    <p class="text-xs text-gray-500">Verdict: You & Varsha (Jadee) are certified soulmate besties forever! 💖</p>
-                </div>
-            `;
-            confetti({ particleCount: 100, spread: 80 });
-        }
-
-        renderQuizQuestion();
-
-        /* ----------------------------------------------------
-           7. Random Birthday Wish Generator
-        ---------------------------------------------------- */
-        const customWishes = [
-            "✨ 'May your year ahead be as bright, fabulous, and unforgettable as you are, Jadee!'",
-            "🌸 'Wishing you endless laughter, delicious treats, and zero bad vibes this year!'",
-            "💖 'To my bestie Varsha: May all your biggest dreams turn into reality this year!'",
-            "👑 'Keep being the queen of good vibes and amazing memories. Happy Birthday!'",
-            "🥂 'Here's to another year of us being the most chaotic and iconic duo ever!'"
-        ];
-
-        function generateRandomWish() {
-            const displayEl = document.getElementById('wish-display');
-            const randomWish = customWishes[Math.floor(Math.random() * customWishes.length)];
-            
-            displayEl.innerText = randomWish;
-            displayEl.classList.remove('hidden');
-
-            confetti({
-                particleCount: 25,
-                spread: 40,
-                origin: { y: 0.8 }
-            });
-        }
+        /* Initialize on load */
+        window.onload = function() {
+            createParticles();
+        };
     </script>
-
-    <style>
-        .flipped .flip-card-inner {
-            transform: rotateY(180deg);
-        }
-    </style>
 </body>
 </html>
