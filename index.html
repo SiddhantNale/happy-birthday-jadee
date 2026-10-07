@@ -87,32 +87,66 @@
         .flip-card-back {
             transform: rotateY(180deg);
         }
+
+        /* Continuous Auto-Scrolling Marquee Gallery */
+        .marquee-wrapper {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            padding: 15px 0;
+            mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+        }
+        .marquee-track {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            animation: scrollGallery 55s linear infinite;
+        }
+        .marquee-wrapper:hover .marquee-track {
+            animation-play-state: paused;
+        }
+        @keyframes scrollGallery {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .polaroid-card {
+            background: #ffffff;
+            padding: 12px 12px 20px 12px;
+            border-radius: 16px;
+            width: 210px;
+            flex-shrink: 0;
+            box-shadow: 0 10px 25px rgba(147, 51, 234, 0.12);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .polaroid-card:hover {
+            transform: scale(1.08) rotate(0deg) !important;
+            z-index: 20;
+            box-shadow: 0 18px 35px rgba(217, 70, 239, 0.25);
+        }
     </style>
 </head>
 <body class="text-slate-800 antialiased pb-20">
 
-    <!-- Floating Background Particles Container -->
     <div id="notes-container"></div>
 
     <!-- Hero Header -->
     <header class="pt-12 pb-8 px-4 text-center relative z-10">
         <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-pill mb-4 text-purple-700 text-sm font-medium shadow-sm">
-            <i class="fa-solid fa-sparkles text-amber-400"></i> Celebrating Varsha (Jadee)'s Special Day
+            <i class="fa-solid fa-sparkles text-amber-400"></i> Celebrating My Favourite Person's Special Day
         </div>
         <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 font-cursive mb-2 drop-shadow-sm">
-            Happy Birthday, Jadee! ✨
+            Wishing You Happiest Birthday, Jadee! ✨
         </h1>
         <p class="text-slate-600 text-base md:text-lg max-w-xl mx-auto font-light">
-            Wishing you a year filled with endless laughter, magical moments, and all the love in the world.
+            Wishing you a year filled with endless laughter, magical moments, and all the love❤️ in the world.
         </p>
     </header>
 
     <!-- Synthesizer Music Player Component -->
     <section class="max-w-4xl mx-auto px-4 mb-10">
         <div class="glass-card rounded-3xl p-6 md:p-8 text-center relative overflow-hidden">
-            <div class="absolute -top-10 -left-10 w-32 h-32 bg-purple-300 rounded-full blur-3xl opacity-50"></div>
-            <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-pink-300 rounded-full blur-3xl opacity-50"></div>
-            
             <div class="relative z-10">
                 <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-purple-500 to-pink-500 text-white flex items-center justify-center mx-auto mb-4 shadow-lg shadow-purple-200 text-2xl">
                     <i class="fa-solid fa-music" id="music-icon"></i>
@@ -121,7 +155,6 @@
                 <h2 class="text-2xl font-bold text-slate-800 mb-1">Synthesizer Symphony</h2>
                 <p class="text-xs text-purple-600 font-medium mb-6 uppercase tracking-wider">Web Audio API Live Polyphonic Harmony</p>
 
-                <!-- Music Control Buttons -->
                 <div class="flex flex-wrap justify-center items-center gap-4 mb-6">
                     <button id="play-song-btn" onclick="toggleBirthdayMusic()" class="glow-button bg-gradient-to-r from-purple-600 via-pink-500 to-rose-500 text-white font-semibold px-8 py-3.5 rounded-full flex items-center gap-3 text-base cursor-pointer">
                         <i class="fa-solid fa-play" id="play-btn-icon"></i>
@@ -133,7 +166,6 @@
                     </button>
                 </div>
 
-                <!-- Live Musical Note Indicator Bar -->
                 <div class="glass-pill rounded-2xl p-4 max-w-md mx-auto flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <span class="w-3 h-3 rounded-full bg-slate-300" id="audio-status-dot"></span>
@@ -147,40 +179,60 @@
         </div>
     </section>
 
-    <!-- Interactive Birthday Cake -->
+    <!-- Interactive Birthday Cake & Candle Blowing -->
     <section class="max-w-4xl mx-auto px-4 mb-12">
         <div class="glass-card rounded-3xl p-8 text-center relative">
-            <h2 class="text-3xl font-cursive font-bold text-slate-800 mb-2">Blow Out The Candle! 🎂</h2>
-            <p class="text-sm text-slate-500 mb-6">Click the candle or button below to make a wish & blow it out!</p>
+            <h2 class="text-3xl font-cursive font-bold text-slate-800 mb-2">Blow Out The Candles! 🎂</h2>
+            <p class="text-sm text-slate-500 mb-6">Blow into your microphone or tap the candles below to make your wish!</p>
 
-            <!-- Cake Visual Container -->
-            <div class="relative w-48 h-48 mx-auto mb-8 flex flex-col items-center justify-end">
-                <!-- Candle Flame -->
-                <div id="candle-wrapper" onclick="blowOutCandle()" class="cursor-pointer group flex flex-col items-center mb-1 transition transform hover:scale-105">
-                    <div id="flame" class="w-5 h-8 candle-flame rounded-full mb-0.5"></div>
-                    <div id="smoke-container" class="absolute -top-6 hidden">
-                        <div class="smoke w-3 h-3 bg-slate-400 rounded-full blur-xs"></div>
+            <div class="relative w-64 h-48 mx-auto mb-6 flex flex-col items-center justify-end">
+                <div class="flex gap-6 mb-1">
+                    <div class="candle-wrapper cursor-pointer group flex flex-col items-center" onclick="blowOutCandle()">
+                        <div class="flame flame-el w-4 h-7 candle-flame rounded-full mb-0.5"></div>
+                        <div class="smoke-container absolute -top-6 hidden">
+                            <div class="smoke w-3 h-3 bg-slate-400 rounded-full blur-xs"></div>
+                        </div>
+                        <div class="w-2.5 h-10 bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-300 rounded-t-sm shadow-inner"></div>
                     </div>
-                    <!-- Candle Stick -->
-                    <div class="w-3 h-12 bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-300 rounded-t-sm shadow-inner"></div>
+
+                    <div class="candle-wrapper cursor-pointer group flex flex-col items-center" onclick="blowOutCandle()">
+                        <div class="flame flame-el w-5 h-8 candle-flame rounded-full mb-0.5"></div>
+                        <div class="smoke-container absolute -top-6 hidden">
+                            <div class="smoke w-3 h-3 bg-slate-400 rounded-full blur-xs"></div>
+                        </div>
+                        <div class="w-3 h-12 bg-gradient-to-b from-purple-300 via-pink-300 to-rose-300 rounded-t-sm shadow-inner"></div>
+                    </div>
+
+                    <div class="candle-wrapper cursor-pointer group flex flex-col items-center" onclick="blowOutCandle()">
+                        <div class="flame flame-el w-4 h-7 candle-flame rounded-full mb-0.5"></div>
+                        <div class="smoke-container absolute -top-6 hidden">
+                            <div class="smoke w-3 h-3 bg-slate-400 rounded-full blur-xs"></div>
+                        </div>
+                        <div class="w-2.5 h-10 bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-300 rounded-t-sm shadow-inner"></div>
+                    </div>
                 </div>
 
-                <!-- Cake Layers -->
-                <div class="w-40 h-10 bg-gradient-to-r from-pink-300 via-rose-200 to-pink-300 rounded-t-2xl shadow-md border-b-4 border-pink-400 flex items-center justify-around px-2">
+                <div class="w-44 h-10 bg-gradient-to-r from-pink-300 via-rose-200 to-pink-300 rounded-t-2xl shadow-md border-b-4 border-pink-400 flex items-center justify-around px-2">
                     <span class="w-3 h-3 bg-white rounded-full opacity-80"></span>
                     <span class="w-3 h-3 bg-white rounded-full opacity-80"></span>
                     <span class="w-3 h-3 bg-white rounded-full opacity-80"></span>
                 </div>
-                <div class="w-48 h-14 bg-gradient-to-r from-purple-300 via-purple-200 to-indigo-300 rounded-b-2xl shadow-xl flex items-center justify-around px-4">
+                <div class="w-52 h-14 bg-gradient-to-r from-purple-300 via-purple-200 to-indigo-300 rounded-b-2xl shadow-xl flex items-center justify-around px-4">
                     <span class="text-xs">🌸</span>
                     <span class="text-xs">✨</span>
                     <span class="text-xs">🌸</span>
                 </div>
             </div>
 
-            <button onclick="blowOutCandle()" class="glass-pill text-purple-700 hover:text-purple-900 font-semibold px-6 py-2.5 rounded-full text-sm shadow-sm hover:shadow transition">
-                💨 Blow Out Candle
-            </button>
+            <div class="flex flex-wrap justify-center gap-3">
+                <button onclick="startMicDetection()" class="glass-pill text-purple-700 hover:text-purple-900 font-semibold px-6 py-2.5 rounded-full text-sm shadow-sm hover:shadow transition flex items-center gap-2">
+                    <i class="fa-solid fa-microphone text-rose-500"></i> Enable Mic to Blow 🎙️
+                </button>
+                <button onclick="blowOutCandle()" class="glass-pill text-purple-700 hover:text-purple-900 font-semibold px-6 py-2.5 rounded-full text-sm shadow-sm hover:shadow transition">
+                    💨 Blow Out Candle
+                </button>
+            </div>
+            <p id="mic-status" class="text-xs text-purple-600 mt-2 font-medium hidden">🎙️ Listening... blow into your microphone!</p>
         </div>
     </section>
 
@@ -191,15 +243,11 @@
             <p class="text-sm text-slate-500 mb-6">Click the box to open your birthday surprise!</p>
 
             <div id="gift-box" onclick="openGift()" class="w-32 h-32 mx-auto bg-gradient-to-tr from-pink-500 to-purple-500 rounded-2xl relative cursor-pointer shadow-xl transition transform hover:scale-105 flex items-center justify-center">
-                <!-- Ribbon vertical -->
                 <div class="absolute w-6 h-full bg-amber-300 rounded-sm"></div>
-                <!-- Ribbon horizontal -->
                 <div class="absolute h-6 w-full bg-amber-300 rounded-sm"></div>
-                <!-- Bow -->
                 <div class="absolute -top-4 text-3xl text-amber-300">🎀</div>
             </div>
 
-            <!-- Opened Gift Content Modal/Card -->
             <div id="gift-content" class="hidden mt-8 p-6 glass-pill rounded-2xl max-w-lg mx-auto text-left animate-fade-in border border-pink-200">
                 <div class="flex items-center gap-3 mb-3 text-purple-700 font-semibold">
                     <i class="fa-solid fa-heart text-rose-500 text-xl"></i>
@@ -223,7 +271,6 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Card 1 -->
             <div class="flip-card h-48 cursor-pointer" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner relative w-full h-full">
                     <div class="flip-card-front absolute w-full h-full glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center">
@@ -237,7 +284,6 @@
                 </div>
             </div>
 
-            <!-- Card 2 -->
             <div class="flip-card h-48 cursor-pointer" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner relative w-full h-full">
                     <div class="flip-card-front absolute w-full h-full glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center">
@@ -251,7 +297,6 @@
                 </div>
             </div>
 
-            <!-- Card 3 -->
             <div class="flip-card h-48 cursor-pointer" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner relative w-full h-full">
                     <div class="flip-card-front absolute w-full h-full glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center">
@@ -267,36 +312,32 @@
         </div>
     </section>
 
-    <!-- Polaroid Photo Gallery -->
+    <!-- Polaroid Auto-Scrolling Photo Gallery -->
     <section class="max-w-4xl mx-auto px-4 mb-12">
-        <div class="text-center mb-8">
-            <h2 class="text-3xl font-cursive font-bold text-slate-800">Polaroid Snapshots 📸</h2>
-            <p class="text-sm text-slate-500">A collection of sweet golden moments</p>
-        </div>
+        <div class="glass-card rounded-3xl p-6 md:p-8">
+            <div class="text-center mb-6">
+                <h2 class="text-3xl font-cursive font-bold text-slate-800">Polaroid Snapshots 📸</h2>
+                <p class="text-sm text-slate-500">Auto-scrolling memory lane! Hover to pause & click to expand photo.</p>
+            </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <!-- Polaroid 1 -->
-            <div class="bg-white p-4 rounded-xl shadow-lg transform -rotate-2 hover:rotate-0 transition duration-300">
-                <img src="https://placehold.co/400x400/f3e8ff/9333ea?text=Best+Moments+✨" alt="Memory 1" class="w-full h-48 object-cover rounded-lg mb-3">
-                <p class="text-center font-cursive text-lg text-slate-700">Golden Memories 🌸</p>
-            </div>
-            <!-- Polaroid 2 -->
-            <div class="bg-white p-4 rounded-xl shadow-lg transform rotate-2 hover:rotate-0 transition duration-300">
-                <img src="https://placehold.co/400x400/fce7f3/db2777?text=Pure+Joy+💖" alt="Memory 2" class="w-full h-48 object-cover rounded-lg mb-3">
-                <p class="text-center font-cursive text-lg text-slate-700">Laughter & Joy 😄</p>
-            </div>
-            <!-- Polaroid 3 -->
-            <div class="bg-white p-4 rounded-xl shadow-lg transform -rotate-1 hover:rotate-0 transition duration-300">
-                <img src="https://placehold.co/400x400/e0e7ff/4f46e5?text=Jadee's+Day+🎉" alt="Memory 3" class="w-full h-48 object-cover rounded-lg mb-3">
-                <p class="text-center font-cursive text-lg text-slate-700">Celebration Time 🥳</p>
+            <div class="marquee-wrapper">
+                <div class="marquee-track" id="polaroidMarqueeTrack"></div>
             </div>
         </div>
     </section>
 
+    <!-- Lightbox Modal -->
+    <div id="lightbox" onclick="this.style.display='none'" class="fixed inset-0 bg-slate-900/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+        <div class="max-w-lg w-full bg-white p-4 rounded-2xl shadow-2xl text-center relative" onclick="event.stopPropagation()">
+            <button onclick="document.getElementById('lightbox').style.display='none'" class="absolute top-2 right-3 text-slate-400 hover:text-slate-600 text-2xl font-bold">&times;</button>
+            <img id="lightboxImg" src="" alt="Expanded Memory" class="w-full h-80 object-cover rounded-xl mb-3">
+            <p id="lightboxCaption" class="font-cursive text-2xl text-purple-800 font-bold"></p>
+        </div>
+    </div>
+
     <!-- Redeemable Coupons & Time Capsule Section -->
     <section class="max-w-4xl mx-auto px-4 mb-12">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Redeemable Promise Coupons -->
             <div class="glass-card rounded-3xl p-6 text-center">
                 <div class="text-3xl text-purple-600 mb-2"><i class="fa-solid fa-ticket"></i></div>
                 <h3 class="text-xl font-bold text-slate-800 mb-2">Birthday Promise Coupons</h3>
@@ -314,7 +355,6 @@
                 </div>
             </div>
 
-            <!-- Time Capsule Message -->
             <div class="glass-card rounded-3xl p-6 text-center flex flex-col justify-between">
                 <div>
                     <div class="text-3xl text-pink-600 mb-2"><i class="fa-solid fa-hourglass-half"></i></div>
@@ -345,52 +385,56 @@
         </div>
     </section>
 
-    <!-- Modals -->
-    <!-- Time Capsule Modal -->
-    <div id="capsule-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-        <div class="glass-card bg-white/90 rounded-3xl p-6 max-w-md w-full text-center relative animate-fade-in">
-            <button onclick="closeModal('capsule-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="text-4xl text-purple-600 mb-3">💌</div>
-            <h3 class="text-2xl font-bold text-slate-800 mb-2 font-cursive">Time Capsule Unlocked!</h3>
-            <p class="text-slate-600 text-sm leading-relaxed mb-6">
-                "No matter how many years go by, the memories and friendship we share remain timeless. Wishing you the happiest year yet, Jadee!"
-            </p>
-            <button onclick="closeModal('capsule-modal')" class="bg-purple-600 text-white font-semibold py-2.5 px-6 rounded-xl text-sm w-full">
-                Close Note
-            </button>
-        </div>
-    </div>
-
-    <!-- Coupon Modal -->
-    <div id="coupon-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-        <div class="glass-card bg-white/90 rounded-3xl p-6 max-w-md w-full text-center relative animate-fade-in">
-            <button onclick="closeModal('coupon-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="text-4xl text-pink-500 mb-3">🎟️</div>
-            <h3 class="text-xl font-bold text-slate-800 mb-2">Coupon Redeemed!</h3>
-            <p id="coupon-modal-text" class="text-slate-600 text-sm mb-6 font-medium"></p>
-            <button onclick="closeModal('coupon-modal')" class="bg-pink-500 text-white font-semibold py-2.5 px-6 rounded-xl text-sm w-full">
-                Yay! Got It!
-            </button>
-        </div>
-    </div>
-
     <script>
+        const imageFiles = [
+            "539494802509759.jpg", "717442567759132.jpg", "733362149277547.jpg", "837674955599621.jpg",
+            "946816147576040.jpg", "972133634922638.jpg", "1080025344047860.jpg", "1090234383158568.jpg",
+            "1154246503316072.jpg", "1195111405816941.jpg", "1282538343541499.jpg", "1395304208922829.jpg",
+            "1400983601391890.jpg", "1491100375185987.jpg", "1586580975655387.jpg", "1588789618692213.jpg",
+            "1703038673671632.jpg", "2200125967100474.jpg", "4144419399139508.jpg", "24559985213698216.jpg",
+            "a9a4774d-5672-4329-bf67-22d031d88720.png", "IMG-20261003-WA0022.jpg", "IMG-20261003-WA0029.jpg",
+            "IMG_20241021_133430.jpg", "IMG_20241021_133655.jpg", "IMG_20241112_101342.jpg", "IMG_20241112_101356.jpg",
+            "IMG_20241115_180917.jpg", "IMG_20241118_151752.jpg", "IMG_20241120_110319.jpg", "IMG_20241120_110319~2.jpg",
+            "IMG_20250101_233454_314.jpg", "IMG_20250101_233458_660.jpg", "IMG_20250109_113142_745.jpg",
+            "IMG_20250115_092635.jpg", "IMG_20250115_092645.jpg", "IMG_20250115_092705.jpg", "IMG_20250115_100731_974.jpg",
+            "IMG_20250115_100736_396.jpg", "IMG_20261005_190928745_HDR.jpg", "IMG_20261005_191236039_HDR.jpg"
+        ];
+
+        function initPolaroidGallery() {
+            const track = document.getElementById('polaroidMarqueeTrack');
+            let cardsHTML = '';
+            
+            imageFiles.forEach((file, idx) => {
+                const rot = (idx % 2 === 0 ? 1.5 : -1.5) * ((idx % 3) + 1);
+                const caption = `Jadee & Me #${idx + 1} 🌸`;
+                cardsHTML += `
+                    <div class="polaroid-card" style="transform: rotate(${rot}deg);" onclick="openLightbox('images/${file}', '${caption}')">
+                        <img src="images/${file}" alt="Memory ${idx+1}" class="w-full h-48 object-cover rounded-lg mb-3">
+                        <p class="text-center font-cursive text-lg text-slate-700">${caption}</p>
+                    </div>
+                `;
+            });
+            track.innerHTML = cardsHTML + cardsHTML;
+        }
+        initPolaroidGallery();
+
+        function openLightbox(src, caption) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxCaption').textContent = caption;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        // Web Audio Synthesizer Logic
         let audioCtx = null;
         let isPlayingSong = false;
         let activeTimeouts = [];
 
-        // Frequency table for notes
         const NOTES = {
             'C4': 261.63, 'D4': 293.66, 'E4': 329.63, 'F4': 349.23, 'G4': 392.00,
             'A4': 440.00, 'B4': 493.88, 'C5': 523.25, 'D5': 587.33, 'E5': 659.25,
             'F5': 698.46, 'G5': 783.99
         };
 
-        // Melody note sequence with duration (seconds) and chords
         const BIRTHDAY_MELODY = [
             { note: 'G4', duration: 0.35, chord: ['C4', 'E4'] },
             { note: 'G4', duration: 0.25, chord: [] },
@@ -431,7 +475,6 @@
             }
         }
 
-        // Play single synth tone
         function playTone(freq, type, duration, gainValue = 0.15) {
             if (!audioCtx || !freq) return;
 
@@ -441,7 +484,6 @@
             osc.type = type;
             osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
 
-            // Envelope
             gain.gain.setValueAtTime(0.01, audioCtx.currentTime);
             gain.gain.linearRampToValueAtTime(gainValue, audioCtx.currentTime + 0.05);
             gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
@@ -455,7 +497,6 @@
 
         function toggleBirthdayMusic() {
             initAudioContext();
-
             if (isPlayingSong) {
                 stopBirthdayMusic();
             } else {
@@ -473,14 +514,12 @@
                 const timeoutId = setTimeout(() => {
                     if (!isPlayingSong) return;
 
-                    // Play main melody (sine/triangle synth tone)
                     if (NOTES[step.note]) {
                         playTone(NOTES[step.note], 'triangle', step.duration * 1.2, 0.25);
                         document.getElementById('current-note-display').textContent = `Note: ${step.note}`;
                         spawnFloatingNote();
                     }
 
-                    // Play chord harmonies
                     if (step.chord && step.chord.length > 0) {
                         step.chord.forEach(chordNote => {
                             if (NOTES[chordNote]) {
@@ -489,7 +528,6 @@
                         });
                     }
 
-                    // Check for song finish
                     if (index === BIRTHDAY_MELODY.length - 1) {
                         setTimeout(() => {
                             if (isPlayingSong) {
@@ -563,29 +601,45 @@
             }, 3500);
         }
 
+        // Candle Blowing & Microphone Listening Logic
+        let isBlown = false;
+
         function blowOutCandle() {
-            initAudioContext();
+            if (isBlown) return;
+            isBlown = true;
+            
+            document.querySelectorAll('.flame-el').forEach(flame => flame.style.display = 'none');
+            document.querySelectorAll('.smoke-container').forEach(smoke => smoke.classList.remove('hidden'));
+            
+            triggerConfetti();
+            alert('✨ Wish made! May all your dreams come true, Jadee! 🎂');
+        }
 
-            // Extinguish flame animation
-            const flame = document.getElementById('flame');
-            const smoke = document.getElementById('smoke-container');
+        function startMicDetection() {
+            const statusText = document.getElementById('mic-status');
+            statusText.classList.remove('hidden');
 
-            if (flame.style.display !== 'none') {
-                flame.style.display = 'none';
-                smoke.classList.remove('hidden');
+            navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const mic = ctx.createMediaStreamSource(stream);
+                const analyzer = ctx.createAnalyser();
+                analyzer.fftSize = 256;
+                mic.connect(analyzer);
 
-                // Play soft puff/extinguish tone
-                playTone(150, 'sawtooth', 0.3, 0.05);
-
-                triggerConfetti();
-
-                setTimeout(() => {
-                    smoke.classList.add('hidden');
-                }, 2000);
-            } else {
-                // Relight candle
-                flame.style.display = 'block';
-            }
+                const data = new Uint8Array(analyzer.frequencyBinCount);
+                function checkVolume() {
+                    analyzer.getByteFrequencyData(data);
+                    let vol = data.reduce((a, b) => a + b) / data.length;
+                    if (vol > 45) {
+                        blowOutCandle();
+                    } else if (!isBlown) {
+                        requestAnimationFrame(checkVolume);
+                    }
+                }
+                checkVolume();
+            }).catch(() => {
+                alert('Microphone access declined or unavailable. Tap the candle to blow it out!');
+            });
         }
 
         function openGift() {
@@ -596,18 +650,13 @@
         }
 
         function redeemCoupon(couponTitle) {
-            document.getElementById('coupon-modal-text').textContent = `You have successfully redeemed: "${couponTitle}"! Send a screenshot to redeem anytime! 💖`;
-            document.getElementById('coupon-modal').style.display = 'flex';
+            alert(`You have successfully redeemed: "${couponTitle}"! Send a screenshot to redeem anytime! 💖`);
             triggerConfetti();
         }
 
         function openTimeCapsule() {
-            document.getElementById('capsule-modal').style.display = 'flex';
+            alert('"No matter how many years go by, the memories and friendship we share remain timeless. Wishing you the happiest year yet, Jadee!"');
             triggerConfetti();
-        }
-
-        function closeModal(id) {
-            document.getElementById(id).style.display = 'none';
         }
 
         const WISHES = [
@@ -626,11 +675,7 @@
 
         function triggerConfetti() {
             if (typeof confetti === 'function') {
-                confetti({
-                    particleCount: 60,
-                    spread: 70,
-                    origin: { y: 0.6 }
-                });
+                confetti({ particleCount: 80, spread: 80, origin: { y: 0.6 } });
             }
         }
     </script>
